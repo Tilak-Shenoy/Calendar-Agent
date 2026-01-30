@@ -1,46 +1,108 @@
-# Getting Started with Create React App
+# Calendar Agent
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React application that integrates with Google Calendar to provide intelligent calendar assistance through a conversational AI interface.
+
+## Features
+
+
+## Setup Instructions
+
+### 1. Google Cloud Console Setup
+
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project or select an existing one
+3. Enable the **Google Calendar API**
+4. **Configure OAuth 2.0 Client ID**:
+   - Go to "Credentials" → "OAuth 2.0 Client IDs"
+   - Click "Edit" your existing client ID
+   - **Authorized JavaScript origins**: Add `http://localhost:3000`
+   - **Authorized redirect URIs**: Add `http://localhost:3000`
+
+5. **Test the consent screen**:
+   - Go to "OAuth consent screen"
+   - Make sure it's configured for "External" users
+   - Add required scopes:
+     - `https://www.googleapis.com/auth/calendar` (Full calendar access)
+     - `https://www.googleapis.com/auth/calendar.events` (Event management)
+
+### 2. OpenAI API Setup
+
+1. Go to [OpenAI Platform](https://platform.openai.com/api-keys)
+2. Create a new API key
+3. Copy the key for use in environment configuration
+
+### 3. Environment Configuration
+
+1. Copy `.env.example` to `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Fill in your credentials in `.env`:
+   ```
+   REACT_APP_GOOGLE_CLIENT_ID=your_actual_client_id_here
+   REACT_APP_GOOGLE_API_KEY=your_actual_api_key_here
+   REACT_APP_OPENAI_API_KEY=your_actual_openai_api_key_here
+   ```
+
+### 4. Install Dependencies
+
+```bash
+npm install
+```
+
+### 5. Run the Application
+
+```bash
+npm start
+```
+
+Open [http://localhost:3000](http://localhost:3000) to view the application.
+
+## Usage Examples
+
+### Calendar Analysis
+Ask questions like:
+- "How much of my time am I spending in meetings?"
+- "How would you recommend I decrease that?"
+- "What does my week look like?"
+- "Generate email drafts for scheduling meetings with my team"
+
+### Calendar Management
+Manage your calendar with natural language commands:
+- "Create a meeting with John tomorrow at 2pm"
+- "Schedule a workout session today at 6am with reminder 15 minutes before"
+- "Create a team meeting tomorrow at 2pm for 1 hour with john@example.com, sarah@example.com"
+- "Update my meeting with John to 3pm"
+- "Move the team standup to 10am"
+- "Reschedule my 2pm meeting to tomorrow at 4pm"
+- "Change the client call to 1pm for 2 hours"
+- "Cancel the dentist appointment"
+- "Show me my events for this week"
+- "List all meetings for today"
+- "Check for conflicts this week"
+
+
+### Conflict Detection
+Find overlapping events in your calendar:
+- "Check for conflicts today"
+- "Show me conflicts this week"
+- "Are there any scheduling conflicts tomorrow?"
+- "Find conflicts for this month"
+
+### Time Slot Finding
+Find available time slots that avoid conflicts:
+- "Find time for a 1 hour meeting today"
+- "When can I schedule a 30 minute call tomorrow morning?"
+- "Show me available slots for a 2 hour meeting this afternoon"
+- "Find time for team lunch tomorrow between 12pm-2pm"
+
+### Email Drafting
+Request email drafts:
+- "I have three meetings I need to schedule with Joe, Dan, and Sally. I really want to block my mornings off to work out, so can you write me an email draft I can share with each of them?"
+
 
 ## Available Scripts
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `npm start` - Run development server
+- `npm run build` - Build for production
